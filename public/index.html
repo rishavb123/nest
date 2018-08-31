@@ -5,6 +5,32 @@
         <title></title>
     </head>
     <body>
+        <!-- <form> -->
+          Temperature: <input id="num" type="number" name="quantity" min="70" max="83" />
+          <br />
+          Password: <input id='ps' type="password" />
+          <br />
+          <button onclick="run()" id="send">SUbmit</button>
+        <!-- </form> -->
+        <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyCGWN5N689bcT4m0ceBKwrAs2n2XG2CK_A",
+            authDomain: "nest-controller.firebaseapp.com",
+            databaseURL: "https://nest-controller.firebaseio.com",
+            projectId: "nest-controller",
+            storageBucket: "nest-controller.appspot.com",
+            messagingSenderId: "934756714072"
+          };
+          firebase.initializeApp(config);
 
+         let run = () => {
+              firebase.auth().signInWithEmailAndPassword("test@test.com", document.getElementById('ps').value);
+              firebase.database().ref("SetTemp").set(document.getElementById('num').value);
+              firebase.auth().signOut();
+          };
+
+        </script>
     </body>
 </html>
