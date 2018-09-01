@@ -10,10 +10,6 @@ const config = {
 };
 firebase.initializeApp(config);
 
-firebase.database().ref("test").on("value", snap => {
-    console.log(snap.val());
-});
-
 let dbCurrentTemp = 0;
 let dbSetTemp = 0;
 
@@ -25,11 +21,13 @@ firebase.database().ref("SetTemp").on("value", snap => {
     dbSetTemp = snap.val();
 });
 
+let curTemp;
+
 function app()
 {
     let wrapper = document.getElementsByClassName('temperature-container')[0]
     let span = wrapper.getElementsByTagName('span')[0];
-    let curTemp = parseInt(span.innerHTML);
+    curTemp = parseInt(span.innerHTML);
     if(dbCurrentTemp != curTemp)
         firebase.database().ref("CurrentTemp").set(curTemp);
     if(curTemp != dbSetTemp)
@@ -51,6 +49,12 @@ function up()
     let wrapper = document.getElementsByClassName('control-container')[0];
     let upBtn = wrapper.getElementsByClassName('up-control')[0];
     upBtn.click();
+    firebase.database().ref("log").push({
+        0: "UP",
+        1: curTemp,
+        2: curTemp+1,
+        3: String(new Date())
+    });
 }
 
 function down()
@@ -58,6 +62,12 @@ function down()
     let wrapper = document.getElementsByClassName('control-container')[0];
     let downBtn = wrapper.getElementsByClassName('down-control')[0];
     downBtn.click();
+    firebase.database().ref("log").push({
+        0: "DOWN",
+        1: curTemp,
+        2: curTemp-1,
+        3: String(new Date())
+    });
 }
 
 window.addEventListener("keypress", e => {
