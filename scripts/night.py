@@ -14,9 +14,9 @@ def check(num):
     return getHour() == num and curHour != num
 
 def setTemp(temp):
-    db.reference('SetTemp').set(temp)
     print "Set Temperature to "+str(temp)+" Degrees\n"
     print "Running . . ."
+    db.reference('SetTemp').set(temp)
 
 curHour = -1
 
