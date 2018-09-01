@@ -30,8 +30,6 @@ while True:
             setTemp(80)
         elif check(9):
             setTemp(77)
-        elif check(4):
-            setTemp(80)
         curHour = getHour()
     except KeyboardInterrupt:
         print "\n\nScript stopped"
