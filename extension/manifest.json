@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Nest Controller",
+  "description":"Uses the Nest Website to change the temperature on a thermostat to whatever is set",
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+  "version": "1.6",
+  "content_scripts": [
+      {
+        "matches": [
+          "https://home.nest.com/thermostat/*"
+        ],
+        "js": [
+            "firebase-app.js",
+            "firebase-database.js",
+            "main.js"
+        ]
+      }
+    ]
+}
