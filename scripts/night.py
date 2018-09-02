@@ -28,7 +28,7 @@ while True:
     try:
         if check(1):
             setTemp(80)
-        elif check(9):
+        elif check(8):
             setTemp(77)
         curHour = getHour()
     except KeyboardInterrupt:
