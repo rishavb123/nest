@@ -1,3 +1,5 @@
 credentials
 *.pyc
 */.idea
+*.mp4
+
