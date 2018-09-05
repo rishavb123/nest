@@ -8,6 +8,7 @@ ap.add_argument("-a", "--min-area", type=int, default=500, help="minimum area si
 args = vars(ap.parse_args())
 
 cam = cv2.VideoCapture(args["video"])
+cv2.namedWindow("Security Feed")
 
 background = None
 
@@ -20,7 +21,7 @@ while True:
         break
 
     height, width = frame.shape[:2]
-    frame = cv2.resize(frame, (800, int(800.0/width*height)))
+    frame = cv2.resize(frame, (500, int(500.0/width*height)))
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     gray = cv2.GaussianBlur(gray, (21, 21), 0)
@@ -36,10 +37,10 @@ while True:
     _, cnts, _ = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     for c in cnts:
-        if cv2.contourArea(c) < 500:
+        if cv2.contourArea(c) < 600:
             continue
         (x, y, w, h) = cv2.boundingRect(c)
-        if x == 0 and y == 0 and w == 500:
+        if x == 0 and y == 0 and w == 600:
             continue
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         text = "Occupied"
@@ -49,8 +50,6 @@ while True:
                 cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
 
     cv2.imshow("Security Feed", frame)
-    cv2.imshow("Thresh", thresh)
-    cv2.imshow("Frame Delta", frameDelta)
     key = cv2.waitKey(1) & 0xFF
 
     # if the `q` key is pressed, break from the lop
