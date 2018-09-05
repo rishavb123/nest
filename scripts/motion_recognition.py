@@ -4,22 +4,26 @@ import datetime
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video", default=0, help="path to the video file")
-ap.add_argument("-a", "--min-area", type=int, default=500, help="minimum area size")
-ap.add_argument("-w", "--screen-width", type=int, default=500, help="minimum area size")
+ap.add_argument("-a", "--min-area", type=int, default=800, help="minimum area size")
+ap.add_argument("-w", "--screen-width", type=int, default=700, help="minimum area size")
 args = vars(ap.parse_args())
 
 cam = cv2.VideoCapture(args["video"])
 cv2.namedWindow("Security Feed")
 
 background = None
+occupied = False
 
 while True:
 
     frame = cam.read()[1]
     text = "Unoccupied"
 
+    occupied = False
+
     if frame is None:
-        break
+        cam = cv2.VideoCapture(args["video"])
+        continue
 
     height, width = frame.shape[:2]
     frame = cv2.resize(frame, (args["screen_width"], int(float(args["screen_width"])/width*height)))
@@ -41,10 +45,11 @@ while True:
         if cv2.contourArea(c) < args["min_area"]:
             continue
         (x, y, w, h) = cv2.boundingRect(c)
-        if x == 0 and y == 0 and w == 600:
+        if x == 0 and y == 0 and w == args["screen_width"]:
             continue
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         text = "Occupied"
+        occupied = True
 
     cv2.putText(frame, "Room Status: {}".format(text), (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
     cv2.putText(frame, datetime.datetime.now().strftime("%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
@@ -53,7 +58,6 @@ while True:
     cv2.imshow("Security Feed", frame)
     key = cv2.waitKey(1) & 0xFF
 
-    # if the `q` key is pressed, break from the lop
     if key == ord("q"):
         break
 
