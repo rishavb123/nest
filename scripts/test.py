@@ -1,8 +1,8 @@
 import cv2
 import datetime
 
-img1 = cv2.imread("test-photos/background1.jpg")
-img2 = cv2.imread("test-photos/background3.jpg")
+img1 = cv2.imread("res/background1.jpg")
+img2 = cv2.imread("res/background3.jpg")
 img3 = img2.copy()
 
 img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
