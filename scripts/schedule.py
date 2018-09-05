@@ -7,16 +7,20 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://nest-controller.firebaseio.com/'
 })
 
-def getHour():
+
+def get_hour():
     return int(str(datetime.datetime.time(datetime.datetime.now())).split(":")[0])
 
-def check(num):
-    return getHour() == num and curHour != num
 
-def setTemp(temp):
+def check(num):
+    return get_hour() == num and curHour != num
+
+
+def set_temp(temp):
     print "Set Temperature to "+str(temp)+" Degrees\n"
     print "Running . . ."
     db.reference('SetTemp').set(temp)
+
 
 curHour = -1
 
@@ -27,10 +31,10 @@ print "Running . . ."
 while True:
     try:
         if check(1):
-            setTemp(80)
+            set_temp(80)
         elif check(8):
-            setTemp(77)
-        curHour = getHour()
+            set_temp(77)
+        curHour = get_hour()
     except KeyboardInterrupt:
         print "\n\nScript stopped"
         print "Goodbye"
