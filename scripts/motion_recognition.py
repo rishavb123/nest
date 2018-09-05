@@ -5,6 +5,7 @@ import datetime
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video", default=0, help="path to the video file")
 ap.add_argument("-a", "--min-area", type=int, default=500, help="minimum area size")
+ap.add_argument("-w", "--screen-width", type=int, default=500, help="minimum area size")
 args = vars(ap.parse_args())
 
 cam = cv2.VideoCapture(args["video"])
@@ -21,7 +22,7 @@ while True:
         break
 
     height, width = frame.shape[:2]
-    frame = cv2.resize(frame, (500, int(500.0/width*height)))
+    frame = cv2.resize(frame, (args["screen_width"], int(float(args["screen_width"])/width*height)))
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     gray = cv2.GaussianBlur(gray, (21, 21), 0)
@@ -37,7 +38,7 @@ while True:
     _, cnts, _ = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     for c in cnts:
-        if cv2.contourArea(c) < 600:
+        if cv2.contourArea(c) < args["min_area"]:
             continue
         (x, y, w, h) = cv2.boundingRect(c)
         if x == 0 and y == 0 and w == 600:
