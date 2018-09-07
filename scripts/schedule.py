@@ -30,9 +30,9 @@ def set_temp(temp):
 
 curHour = -1
 
-print "\nThis Script will set the temperature to a specified schedule"
-print "Use Ctrl C to stop the script\n\n"
-print "Running . . ."
+print("\nThis Script will set the temperature to a specified schedule")
+print("Use Ctrl C to stop the script\n\n")
+print("Running . . .")
 
 while True:
     try:
@@ -52,6 +52,6 @@ while True:
         curHour = hour
 
     except KeyboardInterrupt:
-        print "\n\nScript stopped"
-        print "Goodbye"
+        print("\n\nScript stopped")
+        print("Goodbye")
         break
