@@ -14,7 +14,7 @@ firebase_admin.initialize_app(cred, {
 
 def get_hour():
     h = int(str(db.reference('TestHour').get()))
-    print h
+    print(h)
     return h
 
 
