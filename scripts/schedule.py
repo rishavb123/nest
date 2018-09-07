@@ -12,6 +12,10 @@ def get_hour():
     return int(str(datetime.datetime.time(datetime.datetime.now())).split(":")[0])
 
 
+# def get_hour():
+#     return int(str(db.reference('TestHour').get()))
+
+
 def check(num):
     return get_hour() == num and curHour != num
 
