@@ -8,14 +8,14 @@ firebase_admin.initialize_app(cred, {
 })
 
 
-def get_hour():
-    return int(str(datetime.datetime.time(datetime.datetime.now())).split(":")[0])
-
-
 # def get_hour():
-#     h = int(str(db.reference('TestHour').get()))
-#     print h
-#     return h
+#     return int(str(datetime.datetime.time(datetime.datetime.now())).split(":")[0])
+
+
+def get_hour():
+    h = int(str(db.reference('TestHour').get()))
+    print h
+    return h
 
 
 def check(num, cur_hour):
