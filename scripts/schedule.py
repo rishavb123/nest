@@ -23,8 +23,8 @@ def check(num, cur_hour):
 
 
 def set_temp(temp):
-    print "Set Temperature to "+str(temp)+" Degrees\n"
-    print "Running . . ."
+    print("Set Temperature to "+str(temp)+" Degrees\n")
+    print("Running . . .")
     db.reference('SetTemp').set(temp)
 
 
