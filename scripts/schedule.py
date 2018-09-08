@@ -12,8 +12,8 @@ def get_hour():
     return int(str(datetime.datetime.time(datetime.datetime.now())).split(":")[0])
 
 
-def check(num, cur_hour):
-    return cur_hour == num and curHour != num
+def check(num):
+    return hour == num and hour != num
 
 
 def set_temp(temp):
@@ -23,6 +23,7 @@ def set_temp(temp):
 
 
 curHour = -1
+hour = 0
 
 print("\nThis Script will set the temperature to a specified schedule")
 print("Use Ctrl C to stop the script\n\n")
@@ -33,16 +34,15 @@ while True:
 
         hour = get_hour()
 
-        if check(1, hour):
+        if check(1):
             set_temp(80)
-        elif check(6, hour):
+        elif check(8):
             set_temp(77)
-        elif check(8, hour):
+        elif check(9):
             set_temp(83)
-        elif check(19, hour):
-            set_temp(80)
-        elif check(20, hour):
+        elif check(17):
             set_temp(77)
+
         curHour = hour
 
     except KeyboardInterrupt:
