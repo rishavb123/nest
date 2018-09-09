@@ -13,7 +13,7 @@ def get_hour():
 
 
 def check(num):
-    return hour == num and hour != num
+    return hour == num and curHour != num
 
 
 def set_temp(temp):
@@ -37,7 +37,7 @@ while True:
         if check(1):
             set_temp(80)
         elif check(8):
-            set_temp(77)
+            set_temp(77)    
 
         curHour = hour
 
