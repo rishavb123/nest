@@ -38,10 +38,6 @@ while True:
             set_temp(80)
         elif check(8):
             set_temp(77)
-        elif check(9):
-            set_temp(83)
-        elif check(17):
-            set_temp(77)
 
         curHour = hour
 
