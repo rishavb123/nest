@@ -49,12 +49,13 @@ function up()
     let wrapper = document.getElementsByClassName('control-container')[0];
     let upBtn = wrapper.getElementsByClassName('up-control')[0];
     upBtn.click();
-    firebase.database().ref("log").push({
-        0: "UP",
-        1: curTemp,
-        2: curTemp+1,
-        3: String(new Date())
-    });
+    if(curTemp != 0)
+        firebase.database().ref("log").push({
+            0: "UP",
+            1: curTemp,
+            2: curTemp+1,
+            3: String(new Date())
+        });
 }
 
 function down()
