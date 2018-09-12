@@ -1,11 +1,5 @@
-import firebase_admin
-from firebase_admin import credentials, db
 import datetime
-
-cred = credentials.Certificate("../credentials/serviceAccountKey.json")
-firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://nest-controller.firebaseio.com/'
-})
+from thermostat import set_temp
 
 
 def get_hour():
@@ -14,12 +8,6 @@ def get_hour():
 
 def check(num):
     return hour == num and curHour != num
-
-
-def set_temp(temp):
-    print("Set Temperature to "+str(temp)+" Degrees\n")
-    print("Running . . .")
-    db.reference('SetTemp').set(temp)
 
 
 curHour = -1

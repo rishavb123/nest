@@ -4,12 +4,12 @@ import datetime
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video", default=0, help="path to the video file")
-ap.add_argument("-a", "--min-area", type=int, default=800, help="minimum area size")
-ap.add_argument("-w", "--screen-width", type=int, default=700, help="minimum area size")
+ap.add_argument("-a", "--min-area", type=int, default=1000, help="minimum area size")
+ap.add_argument("-w", "--screen-width", type=int, default=800, help="screen width")
+ap.add_argument("-d", "--display", type=bool, default=False, help="Whether or not to show the display")
 args = vars(ap.parse_args())
 
 cam = cv2.VideoCapture(args["video"])
-cv2.namedWindow("Security Feed")
 
 background = None
 occupied = False
@@ -55,7 +55,8 @@ while True:
     cv2.putText(frame, datetime.datetime.now().strftime("%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
 
-    cv2.imshow("Security Feed", frame)
+    if args["display"]:
+        cv2.imshow("Security Feed", frame)
     key = cv2.waitKey(1) & 0xFF
 
     if key == ord("q"):
