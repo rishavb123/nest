@@ -35,8 +35,10 @@ while True:
         hour = get_hour()
 
         if check(1):
+            set_temp(77)
+        elif check(7):
             set_temp(80)
-        elif check(8):
+        elif check(2);
             set_temp(77)
 
         curHour = hour
