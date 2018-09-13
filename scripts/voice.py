@@ -1,4 +1,4 @@
-from thermostat import init, set_temp
+from thermostat import init, set_temp, finish
 import speech_recognition as sr
 
 
@@ -18,13 +18,17 @@ r = sr.Recognizer()
 
 with sr.Microphone() as source:
 
-    while True:
-        audio = r.listen(source)
-        try:
-            text = str(r.recognize_google(audio)).lower()
+    try:
+        while True:
+            audio = r.listen(source)
+            try:
+                text = str(r.recognize_google(audio)).lower()
 
-            i = text.index("set the temperature to")
-            set_temp(to_int(text[i + 22:]))
+                i = text.index("set the temperature to")
+                set_temp(to_int(text[i + 22:]))
 
-        except (ValueError, sr.UnknownValueError):
-            pass
+            except (ValueError, sr.UnknownValueError):
+                pass
+    except KeyboardInterrupt:
+        print("\n\nScript stopped")
+        print("Goodbye")
