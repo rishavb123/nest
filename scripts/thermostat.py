@@ -34,3 +34,7 @@ def init(use):
     print("Use Ctrl C to stop the script\n\n")
     print("Running . . .")
 
+
+def finish():
+    print("\n\nScript stopped")
+    print("Goodbye")

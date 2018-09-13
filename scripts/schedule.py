@@ -1,5 +1,5 @@
 import datetime
-from thermostat import set_temp, init
+from thermostat import set_temp, init, finish
 
 
 def get_hour():
@@ -30,6 +30,5 @@ while True:
         curHour = hour
 
     except KeyboardInterrupt:
-        print("\n\nScript stopped")
-        print("Goodbye")
+        finish()
         break
