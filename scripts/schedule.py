@@ -1,5 +1,5 @@
 import datetime
-from thermostat import set_temp
+from thermostat import set_temp, init
 
 
 def get_hour():
@@ -13,9 +13,7 @@ def check(num):
 curHour = -1
 hour = 0
 
-print("\nThis Script will set the temperature to a specified schedule")
-print("Use Ctrl C to stop the script\n\n")
-print("Running . . .")
+init("set the temperature to a specified schedule")
 
 while True:
     try:
