@@ -8,6 +8,8 @@ firebase_admin.initialize_app(cred, {
 
 
 def set_temp(temp):
+    if not temp:
+        return None
     print("Set Temperature to "+str(temp)+" Degrees\n")
     print("Running . . .")
     db.reference('SetTemp').set(temp)
