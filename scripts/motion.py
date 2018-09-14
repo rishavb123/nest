@@ -7,7 +7,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video", default=0, help="path to the video file")
 ap.add_argument("-a", "--min-area", type=int, default=1200, help="minimum area size")
 ap.add_argument("-w", "--screen-width", type=int, default=800, help="screen width")
-ap.add_argument("-d", "--display", type=bool, default=True, help="Whether or not to show the display")
+ap.add_argument("-d", "--display", type=bool, default=False, help="Whether or not to show the display")
 ap.add_argument("-t", "--time", type=bool, default=True, help="Time without motion needed to increase the temperature")
 
 args = vars(ap.parse_args())
