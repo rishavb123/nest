@@ -77,7 +77,7 @@ try:
             if get_set_temp() == 81:
                 set_temp(77)
 
-        if unoccupied_counter > 1000 and get_set_temp() < 81:
+        if unoccupied_counter > 2000 and get_set_temp() < 81:
             set_temp(81)
 
         counter += 1
