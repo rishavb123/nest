@@ -26,7 +26,7 @@ with sr.Microphone() as source:
 
             try:
                 text = str(r.recognize_google(audio)).lower()
-                print text
+                print(text)
                 i = text.index("temperature to")
                 set_temp(to_int(text[i + 14:]))
                 engine.say("I'm setting the temperature to {}".format(to_int(text[i + 14:])))
